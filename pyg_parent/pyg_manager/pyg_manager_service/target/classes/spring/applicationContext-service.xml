@@ -14,8 +14,6 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.pyg.service.impl" />
-
     <dubbo:protocol name="dubbo" port="20880"/>
     <dubbo:application name="pinyougou-manager-service"/>
     <dubbo:registry address="zookeeper://172.16.253.132:2181"/>
