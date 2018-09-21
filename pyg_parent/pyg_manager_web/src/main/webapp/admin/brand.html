@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../js/plugins/angularjs/angular.min.js"></script>
 
+    <script src="../js/plugins/angularjs/angular.min.js"></script>
     <script src="../plugins/angularjs/pagination.js"></script>
     <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+
     <script src="js/base_pagination.js"></script>
+    <script src="js/controller/baseController.js"></script>
     <script src="js/service/brandService.js"></script>
     <script src="js/controller/brandController.js"></script>
 </head>
@@ -57,12 +59,12 @@
                 <tr>
                     <td>品牌名称</td>
                     <td><input class="form-control" placeholder="品牌名称" ng-model="searchBrand.name"
-                    value="{{searchBrand.name}}"></td>
+                    ></td>
                 </tr>
                 <tr>
                     <td>首字母</td>
                     <td><input class="form-control" placeholder="首字母" ng-model="searchBrand.firstChar"
-                    value="{{searchBrand.firstChar}}"></td>
+                    ></td>
                 </tr>
             </table>
         </div>

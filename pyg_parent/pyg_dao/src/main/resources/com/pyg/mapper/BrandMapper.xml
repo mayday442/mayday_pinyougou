@@ -14,12 +14,12 @@
     <select id="searchBrandList" resultMap="searchBrandListMap">
         select * from tb_brand
         <where>
-            <if test="#{name} != '' and #{name} != null">
+            <if test="name != '' and name != null">
                 and name like '%${name}%'
             </if>
 
-            <if test="#{firstChar} != '' and #{firstChar} != null">
-                and first_char like '%${firstChar}%'
+            <if test="firstChar != '' and firstChar != null">
+                and first_char = #{firstChar}
             </if>
         </where>
     </select>

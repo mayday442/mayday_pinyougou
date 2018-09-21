@@ -142,4 +142,15 @@ public class TbSpecificationOption implements Serializable {
     public void setOrders(Integer orders) {
         this.orders = orders;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("TbSpecificationOption{");
+        sb.append("id=").append(id);
+        sb.append(", optionName='").append(optionName).append('\'');
+        sb.append(", specId=").append(specId);
+        sb.append(", orders=").append(orders);
+        sb.append('}');
+        return sb.toString();
+    }
 }

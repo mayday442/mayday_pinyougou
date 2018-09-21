@@ -150,6 +150,7 @@
         orders,
       </if>
     </trim>
+
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},

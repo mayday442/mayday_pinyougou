@@ -1,4 +1,4 @@
-package com.pyg.pojo;
+package com.pyg.entity;
 
 import java.io.Serializable;
 

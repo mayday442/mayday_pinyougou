@@ -2,11 +2,8 @@ package com.pyg.service;
 
 
 
-import com.pyg.pojo.PageResult;
-import com.pyg.pojo.PygResult;
+import com.pyg.entity.PageResult;
 import com.pyg.pojo.TbBrand;
-
-import java.util.List;
 
 /**
  * @author mayday

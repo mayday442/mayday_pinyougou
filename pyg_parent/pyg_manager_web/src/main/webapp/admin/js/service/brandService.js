@@ -1,9 +1,5 @@
 app.service("brandService", function ($http) {
 
-    this.findPage = function (pageNum, pageSize) {
-        return $http.get('../brand/listAllBrand?pageNum=' + pageNum + '&pageSize=' + pageSize);
-    };
-
     this.save = function ($scope) {
         $scope.method = "saveBrand";
         if ($scope.brand.id != null) {
@@ -13,7 +9,7 @@ app.service("brandService", function ($http) {
         return $http.post('../brand/' + $scope.method, $scope.brand);
     };
 
-    this.delete = function () {
+    this.delete = function ($scope) {
         return $http.get('../brand/deleteBrands?ids=' + $scope.selectIds);
     };
 
@@ -21,7 +17,7 @@ app.service("brandService", function ($http) {
         return $http.get('../brand/findBrandById/' + id);
     };
 
-    this.search = function (pageNum, pageSize, $scope) {
+    this.search = function (pageNum, pageSize, searchBrand) {
         if (pageNum == null){
             pageNum = 1
         }
@@ -29,7 +25,7 @@ app.service("brandService", function ($http) {
             pageSize = 10
         }
 
-        return $http.post('../brand/searchBrandList?pageNum=' + pageNum + '&pageSize=' + pageSize, $scope.searchBrand)
+        return $http.post('../brand/searchBrandList?pageNum=' + pageNum + '&pageSize=' + pageSize, searchBrand)
     };
 
 })

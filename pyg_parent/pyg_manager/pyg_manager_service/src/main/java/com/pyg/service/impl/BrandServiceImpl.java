@@ -3,7 +3,7 @@ package com.pyg.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.pyg.mapper.BrandMapper;
-import com.pyg.pojo.PageResult;
+import com.pyg.entity.PageResult;
 import com.pyg.pojo.TbBrand;
 import com.pyg.service.BrandService;
 import org.mybatis.spring.annotation.MapperScan;
@@ -17,7 +17,6 @@ import java.util.List;
  */
 
 @Service
-@MapperScan("com.pyg.mapper")
 @Transactional(rollbackFor = Exception.class)
 public class BrandServiceImpl implements BrandService {
 

@@ -2,16 +2,12 @@ package com.pyg.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pyg.pojo.PageResult;
-import com.pyg.pojo.PygResult;
+import com.pyg.entity.PageResult;
+import com.pyg.entity.PygResult;
 import com.pyg.pojo.TbBrand;
 import com.pyg.service.BrandService;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author mayday
@@ -24,19 +20,14 @@ public class BrandController {
     @Reference
     private BrandService brandService;
 
-
-    @RequestMapping("listAllBrand")
-    public PageResult<TbBrand> listAllBrand(@RequestParam int pageNum,
-                                            @RequestParam int pageSize) {
-
-        return brandService.listAllBrand(pageNum, pageSize);
-    }
-
     @RequestMapping("searchBrandList")
-    public PageResult<TbBrand> searchBrandList(@RequestParam int pageNum,
-                                               @RequestParam int pageSize,
+    public PageResult<TbBrand> searchBrandList(int pageNum,
+                                               int pageSize,
                                                @RequestBody TbBrand searchBrand) {
 
+        System.err.println(pageNum);
+        System.err.println(pageSize);
+        System.err.println(searchBrand);
         PageResult<TbBrand> pageResult = brandService.searchBrandList(pageNum, pageSize, searchBrand);
         return pageResult;
     }
