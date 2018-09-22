@@ -28,4 +28,8 @@ app.service("brandService", function ($http) {
         return $http.post('../brand/searchBrandList?pageNum=' + pageNum + '&pageSize=' + pageSize, searchBrand)
     };
 
+    this.findAll = function () {
+        return $http.get('../brand/listAllBrand')
+    }
+
 })

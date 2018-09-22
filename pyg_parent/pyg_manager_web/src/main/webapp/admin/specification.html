@@ -21,6 +21,8 @@
 	<script src="./js/service/specificationService.js"></script>
 	<script src="./js/controller/specificationController.js"></script>
 
+
+
 </head>
 
 <body class="hold-transition skin-red sidebar-mini" ng-app="pyg" ng-controller="specificationController">
@@ -54,7 +56,7 @@
 			                      <thead>
 			                          <tr>
 			                              <th class="" style="padding-right:0px">
-			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue" >
+			                                  <input id="selall" ng-checked="isAllChecked()" ng-click="selectAll($event)" type="checkbox" class="icheckbox_square-blue" >
 			                              </th>
 										  <th class="sorting_asc">规格ID</th>
 									      <th class="sorting">规格名称</th>
@@ -62,8 +64,8 @@
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-									  <tr ng-repeat="spec in specList">
-			                              <td><input  type="checkbox" ng-click="updateSelection($event, spec.id)"></td>
+									  <tr ng-repeat="spec in list">
+			                              <td><input  type="checkbox" ng-checked="isChecked(spec.id)" ng-click="updateSelection($event, spec.id)"></td>
 				                          <td>{{spec.id}}</td>
 									      <td>{{spec.specName}}</td>
 		                                  <td class="text-center">

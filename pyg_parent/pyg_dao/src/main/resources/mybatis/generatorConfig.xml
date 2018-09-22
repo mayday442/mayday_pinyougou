@@ -5,7 +5,7 @@
     <!-- classPathEntry:数据库的 JDBC 驱动的 jar 包地址 -->
     <classPathEntry
             location="/Users/mayday/.m2/repository/mysql/mysql-connector-java/6.0.6"/>
-    <context id="caigouTables" targetRuntime="MyBatis3">
+    <context id="pinyougou" targetRuntime="MyBatis3">
 
 
         <!-- 生成的 pojo 类自动实现 Serializable 接口-->
@@ -13,8 +13,10 @@
 
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true:是 : false:否 -->
-            <property name="suppressAllComments" value="false"/>
-        </commentGenerator> <!--数据库连接的信息:驱动类、连接地址、用户名、密码 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接的信息:驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql:///pinyougoudb?useSSL=true"
                         userId="root"
@@ -24,6 +26,7 @@
         connecti onURL="jdbc:ora cl e:thin:@127.0.0.1:1521:yycg" us erI d="yyc g"
         password="yycg">
         </jdbcConnection> -->
+
         <!-- 默认 false，把 JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把 JDBC DECIMAL 和
         NUMERIC 类型解析为java.math.BigDecimal -->
         <javaTypeResolver>
@@ -31,7 +34,7 @@
         </javaTypeResolver>
 
         <!-- targetProject:生成 POJO 类的位置 -->
-        <javaModelGenerator targetPackage="com.pyg.pojo"
+        <javaModelGenerator targetPackage="com.pinyougou.pojo"
                             targetProject="/Users/mayday/IdeaProjects/mayday_pinyougou/pyg_parent/pyg_pojo/src/main/java">
             <!--enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="true"/>
@@ -42,36 +45,39 @@
         <!-- targetProject:自动 mapper 接口的位置 -->
 
 
-        <sqlMapGenerator targetPackage="com.pyg.mapper"
+        <sqlMapGenerator targetPackage="com.pinyougou.mapper"
                          targetProject="/Users/mayday/IdeaProjects/mayday_pinyougou/pyg_parent/pyg_dao/src/main/java">
-            <property name="enableSubPackages" value="false"/>
+            <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成 XML 文件 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.pyg.mapper"
-                             implementationPackage="com.pyg.mapper"
+                             targetPackage="com.pinyougou.mapper"
+                             implementationPackage="com.pinyougou.mapper"
                              targetProject="/Users/mayday/IdeaProjects/mayday_pinyougou/pyg_parent/pyg_dao/src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-        <table tableName="tb_user"/>
+
+        <table tableName="tb_address"/>
+        <table tableName="tb_areas"/>
+        <table tableName="tb_brand"/>
+        <table tableName="tb_cities"/>
         <table tableName="tb_content"/>
         <table tableName="tb_content_category"/>
+        <table tableName="tb_freight_template"/>
+        <table tableName="tb_goods"/>
+        <table tableName="tb_goods_desc"/>
         <table tableName="tb_item"/>
         <table tableName="tb_item_cat"/>
         <table tableName="tb_order"/>
         <table tableName="tb_order_item"/>
-        <table tableName="tb_address"/>
-        <table tableName="tb_areas"/>
-        <table tableName="tb_brand"/>
+        <table tableName="tb_pay_log"/>
         <table tableName="tb_provinces"/>
-        <table tableName="tb_cities"/>
+        <table tableName="tb_seckill_goods"/>
+        <table tableName="tb_seckill_order"/>
         <table tableName="tb_seller"/>
-        <table tableName="tb_freight_template"/>
         <table tableName="tb_specification"/>
         <table tableName="tb_specification_option"/>
         <table tableName="tb_type_template"/>
-        <table tableName="tb_goods"/>
-        <table tableName="tb_goods_desc"/>
-        <table tableName="tb_pay_log"/>
+        <table tableName="tb_user"/>
     </context>
 </generatorConfiguration>

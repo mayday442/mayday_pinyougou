@@ -22,6 +22,7 @@
     <script src="js/controller/brandController.js"></script>
 </head>
 <body class="hold-transition skin-red sidebar-mini" ng-app="pyg" ng-controller="brandController">
+<input type="text" value="{{selectIds}}">
 <!-- .box-body -->
 <div class="box-header with-border">
     <h3 class="box-title">品牌管理</h3>
@@ -37,7 +38,7 @@
             <div class="form-group form-inline">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default" title="新建" data-toggle="modal"
-                            data-target="#editModal" ng-click="brand={}"><i class="fa fa-file-o"></i> 新建
+                            data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建
                     </button>
                     <button type="button" class="btn btn-default" title="删除" ng-click="delete()"><i class=" fa fa-trash-o
                     "></i> 删除
@@ -78,7 +79,7 @@
             <thead>
             <tr>
                 <th class="" style="padding-right:0px">
-                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                    <input id="selall" type="checkbox" ng-checked="isAllChecked()" ng-click="selectAll($event)" class="icheckbox_square-blue">
                 </th>
                 <th class="sorting_asc">品牌ID</th>
                 <th class="sorting">品牌名称</th>
@@ -87,8 +88,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="brand in brandList">
-                <td><input type="checkbox" ng-click="updateSelection($event, brand.id)" )></td>
+            <tr ng-repeat="brand in list">
+                <td><input type="checkbox" ng-checked="isChecked(brand.id)" ng-click="updateSelection($event, brand.id)"></td>
                 <td>{{brand.id}}</td>
                 <td>{{brand.name}}</td>
                 <td>{{brand.firstChar}}</td>

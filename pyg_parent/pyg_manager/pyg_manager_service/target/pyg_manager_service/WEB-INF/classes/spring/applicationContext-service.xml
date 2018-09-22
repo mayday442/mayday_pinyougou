@@ -17,7 +17,7 @@
     <dubbo:protocol name="dubbo" port="20880"/>
     <dubbo:application name="pinyougou-manager-service"/>
     <dubbo:registry address="zookeeper://192.168.186.46:2181"/>
-    <dubbo:annotation package="com.pyg.service.impl"/>
+    <dubbo:annotation package="com.pinyougou.service.impl"/>
 
 
 </beans>

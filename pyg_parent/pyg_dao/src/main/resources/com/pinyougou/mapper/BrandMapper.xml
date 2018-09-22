@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pinyougou.mapper.BrandMapper">
+
+    <delete id="deleteBrands">
+        delete from tb_brand where id in
+        <foreach collection="array" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="searchBrandList" resultMap="searchBrandListMap">
+        select * from tb_brand
+        <where>
+            <if test="name != '' and name != null">
+                and name like '%${name}%'
+            </if>
+
+            <if test="firstChar != '' and firstChar != null">
+                and first_char = #{firstChar}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="searchBrandListMap" type="tbBrand">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="firstChar" column="first_char"/>
+    </resultMap>
+
+</mapper>
