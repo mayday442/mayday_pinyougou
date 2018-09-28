@@ -22,7 +22,7 @@ public interface TbSellerMapper {
 
     void updateByPrimaryKey(TbSeller seller);
 
-    TbSeller selectByPrimaryKey(Long id);
+    TbSeller selectByPrimaryKey(String id);
 
     void deleteByPrimaryKey(Long id);
 }

@@ -5,6 +5,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
@@ -12,12 +14,19 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
 
     <dubbo:protocol name="dubbo" port="20880"/>
     <dubbo:application name="pinyougou-manager-service"/>
-    <dubbo:registry address="zookeeper://192.168.186.46:2181"/>
-    <dubbo:annotation package="com.pinyougou.service.impl"/>
+    <dubbo:registry address="zookeeper://192.168.25.55:2181"/>
+    <dubbo:annotation package="com.pinyougou.manager.service.impl"/>
+
 
 
 </beans>

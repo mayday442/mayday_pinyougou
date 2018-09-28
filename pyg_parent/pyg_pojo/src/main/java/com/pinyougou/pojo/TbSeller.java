@@ -54,6 +54,32 @@ public class TbSeller implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String statusStr;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getStatusStr() {
+        if ("1".equals(status)){
+            return "已审核";
+        }
+
+        if ("2".equals(status)){
+            return "审核未通过";
+        }
+
+        if ("3".equals(status)){
+            return "关闭";
+        }
+
+        return "未审核";
+    }
+
+    public void setStatusStr(String statusStr) {
+        this.statusStr = statusStr;
+    }
+
     public String getSellerId() {
         return sellerId;
     }

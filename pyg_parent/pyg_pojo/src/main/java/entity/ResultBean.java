@@ -29,7 +29,6 @@ public class ResultBean<T> implements Serializable {
     }
 
 
-
     public ResultBean(boolean success) {
         this.success = success;
     }
