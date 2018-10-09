@@ -14,6 +14,9 @@
         <module>pyg_pojo</module>
         <module>pyg_manager_web</module>
         <module>pyg_shop_web</module>
+        <module>pyg_content</module>
+        <module>pyg_portal_web</module>
+        <module>pyg_constant</module>
     </modules>
     <packaging>pom</packaging>
 

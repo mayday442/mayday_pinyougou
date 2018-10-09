@@ -33,6 +33,13 @@ public class ItemCatController {
 	public List<TbItemCat> findAll(@PathVariable long parentId){
 		return itemCatService.findAll(parentId);
 	}
+
+	@RequestMapping("/findAll")
+	public ResultBean findAll(){
+
+		List<TbItemCat> itemCats = itemCatService.findAll();
+		return new ResultBean<>(itemCats);
+	}
 	
 	/**
 	 * 增加

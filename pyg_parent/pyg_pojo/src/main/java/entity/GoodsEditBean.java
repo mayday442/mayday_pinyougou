@@ -2,12 +2,13 @@ package entity;
 
 import com.pinyougou.pojo.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author mayday
  */
-public class GoodsEditBean {
+public class GoodsEditBean implements Serializable {
 
     private TbGoods goods;
 

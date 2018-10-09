@@ -15,15 +15,15 @@
     <http pattern="/seller/add" security="none"/>
     <http pattern="/login_error.html" security="none"/>
 
-    <http pattern="/css" security="none"/>
-    <http pattern="/assets" security="none"/>
-    <http pattern="/img/assets/img/phone" security="none"/>
-    <http pattern="/js" security="none"/>
-    <http pattern="/plugins/kindeditor/plugins/media" security="none"/>
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/assets/**" security="none"/>
+    <http pattern="/img/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/plugins/**" security="none"/>
 
     <!-- 页面拦截规则 -->
     <http use-expressions="false">
-        <intercept-url pattern="/shop/config" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/**" access="ROLE_ADMIN"/>
         <form-login
                 login-page="/"
                 default-target-url="/admin/index.html"

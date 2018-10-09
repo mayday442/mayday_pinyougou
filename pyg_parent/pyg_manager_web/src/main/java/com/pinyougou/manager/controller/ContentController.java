@@ -2,7 +2,8 @@ package com.pinyougou.manager.controller;
 import java.util.List;
 
 import com.pinyougou.pojo.TbContent;
-import com.pinyougou.manager.service.ContentService;
+import com.pinyougou.content.service.ContentService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,21 +28,17 @@ public class ContentController {
 	 * 返回全部列表
 	 * @return
 	 */
+	@RequestMapping("/findAllContentCategory")
+	public ResultBean findAllContentCategory(){
+		return contentService.findAllContentCategory();
+	}
+
 	@RequestMapping("/findAll")
-	public List<TbContent> findAll(){
+	public ResultBean findAll(){
 		return contentService.findAll();
 	}
 	
-	
-	/**
-	 * 返回全部列表
-	 * @return
-	 */
-	@RequestMapping("/findPage")
-	public PageResult  findPage(int page,int rows){			
-		return contentService.findPage(page, rows);
-	}
-	
+
 	/**
 	 * 增加
 	 * @param content
@@ -79,8 +76,8 @@ public class ContentController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/findOne")
-	public TbContent findOne(Long id){
+	@RequestMapping("/findOne/{id}")
+	public ResultBean findOne(@PathVariable Long id){
 		return contentService.findOne(id);		
 	}
 	
@@ -89,8 +86,8 @@ public class ContentController {
 	 * @param ids
 	 * @return
 	 */
-	@RequestMapping("/delete")
-	public ResultBean delete(Long [] ids){
+	@RequestMapping("/delete/{ids}")
+	public ResultBean delete(@PathVariable Long [] ids){
 		try {
 			contentService.delete(ids);
 			return new ResultBean(true, "删除成功");
@@ -99,17 +96,6 @@ public class ContentController {
 			return new ResultBean(false, "删除失败");
 		}
 	}
-	
-		/**
-	 * 查询+分页
-	 * @param brand
-	 * @param page
-	 * @param rows
-	 * @return
-	 */
-	@RequestMapping("/search")
-	public PageResult search(@RequestBody TbContent content, int page, int rows  ){
-		return contentService.findPage(content, page, rows);		
-	}
+
 	
 }

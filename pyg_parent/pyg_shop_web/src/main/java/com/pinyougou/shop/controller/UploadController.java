@@ -1,8 +1,7 @@
 package com.pinyougou.shop.controller;
 
-import com.pinyougou.common.unit.FastDFSClient;
+import com.pinyougou.common.util.FastDFSClient;
 import entity.ResultBean;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;

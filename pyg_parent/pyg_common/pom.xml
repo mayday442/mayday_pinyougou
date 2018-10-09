@@ -20,6 +20,24 @@
             <groupId>org.csource.fastdfs</groupId>
             <artifactId>fastdfs</artifactId>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.7.2.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <artifactId>pyg_common</artifactId>

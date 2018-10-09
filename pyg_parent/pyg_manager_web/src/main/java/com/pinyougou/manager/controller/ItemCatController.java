@@ -11,6 +11,9 @@ import com.alibaba.dubbo.config.annotation.Reference;
 
 import entity.PageResult;
 import entity.ResultBean;
+
+import java.util.List;
+
 /**
  * controller
  * @author Administrator
@@ -33,6 +36,13 @@ public class ItemCatController {
 								@PathVariable int rows,
 								@PathVariable long id){
 		return itemCatService.findPage(page, rows, id);
+	}
+
+	@RequestMapping("/findAll")
+	public ResultBean findAll(){
+
+		List<TbItemCat> itemCats = itemCatService.findAll();
+		return new ResultBean<>(itemCats);
 	}
 	
 	/**

@@ -38,6 +38,11 @@ public class ItemCatServiceImpl implements ItemCatService {
         return itemCatMapper.selectByExample(example);
     }
 
+    @Override
+    public List<TbItemCat> findAll() {
+        return itemCatMapper.selectByExample(null);
+    }
+
     /**
      * 按分页查询
      */

@@ -15,14 +15,16 @@ public interface ItemCatService {
 	 * @return
 	 */
 	public List<TbItemCat> findAll(long parentId);
-	
-	
+
+	public List<TbItemCat> findAll();
+
+
 	/**
 	 * 返回分页列表
 	 * @return
 	 */
 	public PageResult findPage(int pageNum, int pageSize, long id);
-	
+
 	
 	/**
 	 * 增加

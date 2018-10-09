@@ -1,6 +1,10 @@
 //服务层
 app.service('itemCatService', function ($http) {
 
+    this.findAllCategory = function () {
+        return $http.get('../itemCat/findAll')
+    };
+
     //分页
     this.findPage = function (pageNum, pageSize, id) {
         return $http.get('../itemCat/findPage/' + pageNum + "/" + pageSize + "/" + id);

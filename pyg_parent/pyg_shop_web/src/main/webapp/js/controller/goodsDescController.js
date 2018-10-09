@@ -1,4 +1,4 @@
-app.controller('goodsDescController', function ($scope, $controller, uploadService) {
+app.controller('goodsDescController', function ($scope, $controller, uploadService, goodsDescService) {
 
 
     $controller('goodsEditController', {
@@ -8,15 +8,13 @@ app.controller('goodsDescController', function ($scope, $controller, uploadServi
     $scope.save = function () {
         $scope.entity.goodsDesc.introduction = editor.html();
 
-        // goodsDescService.save().success(function (response) {
-        //     if (response.success){
-        //         alert("保存成功");
-        //         $scope.entity = {};
-        //         editor.html("")
-        //     }else {
-        //         alert('保存失败');
-        //     }
-        // });
+        goodsDescService.save($scope.entity).success(function (response) {
+            if (response.success){
+                location.href = "goods.html";
+            }else {
+                alert('保存失败');
+            }
+        });
 
 
     };
@@ -42,12 +40,12 @@ app.controller('goodsDescController', function ($scope, $controller, uploadServi
 
     $scope.isHidden = function (event) {
         if (event.target.checked) {
-            $scope.entity.goods.isEnableSpec = 1;
             $scope.optionsIsHidden = {}
         } else {
-            $scope.entity.goods.isEnableSpec = 0;
             $scope.optionsIsHidden = null
         }
+
+
     };
 
 

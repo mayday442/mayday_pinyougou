@@ -190,12 +190,12 @@
 
                 <!--扩展属性-->
                 <div class="tab-pane" id="customAttribute">
-                    <div class="row data-type" ng-repeat="pojo in customAttributeItems">
+                    <div class="row data-type" ng-repeat="pojo in entity.goodsDesc.customAttributeItems">
                         <div>
                             <div class="col-md-2 title">{{pojo.text}}</div>
                             <div class="col-md-10 data">
                                 <input class="form-control" placeholder="{{pojo.text}}"
-                                       ng-model="entity.goodsDesc.customAttributeItems">
+                                       ng-model="pojo.value">
                             </div>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                     <div class="row data-type">
                         <div class="col-md-2 title">是否启用规格</div>
                         <div class="col-md-10 data">
-                            <input type="checkbox" ng-click="isHidden($event)">
+                            <input type="checkbox" ng-click="isHidden($event)" ng-model="entity.goods.isEnableSpec" ng-true-value="1" ng-false-value="0">
                         </div>
                     </div>
                     <p>
@@ -251,10 +251,10 @@
                                         <input class="form-control" placeholder="库存数量" ng-model="item.num">
                                     </td>
                                     <td>
-                                        <input type="checkbox" ng-model="item.status">
+                                        <input type="checkbox" ng-model="item.status" ng-true-value="1" ng-false-value="0" >
                                     </td>
                                     <td>
-                                        <input type="checkbox" ng-model="item.isDefault">
+                                        <input type="checkbox" ng-model="item.isDefault" ng-true-value="1" ng-false-value="0">
                                     </td>
                                 </tr>
                                 </tbody>

@@ -99,6 +99,7 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
+        
 
         <dependency>
             <groupId>com.pinyougou</groupId>
@@ -156,7 +157,7 @@
                 <version>2.2</version>
                 <configuration>
                     <!-- 指定端口 -->
-                    <port>9102</port>
+                    <port>8082</port>
                     <!-- 请求路径 -->
                     <path>/</path>
                 </configuration>

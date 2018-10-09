@@ -2,8 +2,8 @@ app.controller('goodsEditController', function ($scope, goodsDescService, itemCa
                                                 typeTemplateService) {
 
     $scope.entity = {
-        goods: {},
-        goodsDesc: {itemImages : [], specificationItems : []},
+        goods: {isEnableSpec :0},
+        goodsDesc: {itemImages : [], specificationItems : [], customAttributeItems : []},
         itemList: []
     };
 
@@ -56,8 +56,9 @@ app.controller('goodsEditController', function ($scope, goodsDescService, itemCa
 
     function listBrands(typeId) {
         typeTemplateService.findOne(typeId).success(function (response) {
-            $scope.brandList = JSON.parse(response.data.brandIds)
-            $scope.customAttributeItems = JSON.parse(response.data.customAttributeItems)
+            $scope.entity.goods.typeTemplateId = typeId
+            $scope.brandList = JSON.parse(response.data.brandIds);
+            $scope.entity.goodsDesc.customAttributeItems = JSON.parse(response.data.customAttributeItems)
         })
 
         findSpecificationOption(typeId)
