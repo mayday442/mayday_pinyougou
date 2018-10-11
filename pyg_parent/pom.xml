@@ -17,6 +17,9 @@
         <module>pyg_content</module>
         <module>pyg_portal_web</module>
         <module>pyg_constant</module>
+        <module>pyg_search</module>
+        <module>pyg_solr_util</module>
+        <module>pyg_search_web</module>
     </modules>
     <packaging>pom</packaging>
 
