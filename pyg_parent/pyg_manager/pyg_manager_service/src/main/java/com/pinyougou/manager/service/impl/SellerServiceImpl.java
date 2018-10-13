@@ -32,10 +32,11 @@ public class SellerServiceImpl implements SellerService {
 	 * 增加
 	 */
 	@Override
-	public void add(TbSeller seller) {
+	public boolean add(TbSeller seller) {
 		seller.setStatus("0");
 		seller.setCreateTime(new Date());
-		sellerMapper.insert(seller);
+		int insert = sellerMapper.insert(seller);
+		return insert > 0;
 	}
 
 

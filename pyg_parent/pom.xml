@@ -20,6 +20,8 @@
         <module>pyg_search</module>
         <module>pyg_solr_util</module>
         <module>pyg_search_web</module>
+        <module>pyg_page</module>
+        <module>pyg_page_web</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -51,12 +51,12 @@ public class GoodsServiceImpl implements GoodsService {
         TbGoodsDesc goodsDesc = goodsEditBean.getGoodsDesc();
         List<TbItem> itemList = goodsEditBean.getItemList();
 
-        goodsDesc.setGoodsId(goods.getId());
-        goodsDescMapper.insertSelective(goodsDesc);
-
         goods.setIsMarketable("0");
         goods.setAuditStatus("0");
         goodsMapper.insertSelective(goods);
+        goodsDesc.setGoodsId(goods.getId());
+        goodsDescMapper.insertSelective(goodsDesc);
+
 
         Date date = new Date();
 

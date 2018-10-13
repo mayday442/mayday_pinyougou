@@ -5,23 +5,23 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>产品列表页</title>
-    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="icon" href="./assets/img/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="css/webbase.css"/>
-    <link rel="stylesheet" type="text/css" href="css/pages-list.css"/>
-    <link rel="stylesheet" type="text/css" href="css/widget-cartPanelView.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/webbase.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/pages-list.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/widget-cartPanelView.css"/>
 
-    <script src="js/angularjs/angular.min.js"></script>
-    <script src="js/base.js"></script>
-    <script src="js/controller/baseController.js"></script>
-    <script src="js/service/searchService.js"></script>
-    <script src="js/controller/searchController.js"></script>
-    <script src="js/filter/trustHtmlFilter.js"></script>
+    <script src="./js/angularjs/angular.min.js"></script>
+    <script src="./js/base.js"></script>
+    <script src="./js/controller/baseController.js"></script>
+    <script src="./js/service/searchService.js"></script>
+    <script src="./js/controller/searchController.js"></script>
+    <script src="./js/filter/trustHtmlFilter.js"></script>
 
 
 </head>
 
-<body ng-app="pyg" ng-controller="searchController" ng-init="search()">
+<body ng-app="pyg" ng-controller="searchController" ng-init="initSearch()">
 <!-- 头部栏位 -->
 <!--页面顶部-->
 <div id="nav-bottom">
@@ -33,7 +33,10 @@
                     <ul class="fl">
                         <li class="f-item">品优购欢迎您！</li>
                         <li class="f-item">请
-                            <a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span>
+                            <a href="../../../../pyg_portal_web/src/main/webapp/login.html"
+                               target="_blank">登录</a>　<span><a
+                                    href="../../../../pyg_portal_web/src/main/webapp/register.html"
+                                    target="_blank">免费注册</a></span>
                         </li>
                     </ul>
                     <ul class="fr">
@@ -53,13 +56,15 @@
                             <span>客户服务</span>
                             <ul class="service">
                                 <li>
-                                    <a href="cooperation.html" target="_blank">合作招商</a>
+                                    <a href="../../../../pyg_portal_web/src/main/webapp/cooperation.html"
+                                       target="_blank">合作招商</a>
                                 </li>
                                 <li>
                                     <a href="shoplogin.html" target="_blank">商家后台</a>
                                 </li>
                                 <li>
-                                    <a href="cooperation.html" target="_blank">合作招商</a>
+                                    <a href="../../../../pyg_portal_web/src/main/webapp/cooperation.html"
+                                       target="_blank">合作招商</a>
                                 </li>
                                 <li>
                                     <a href="#">商家后台</a>
@@ -87,7 +92,8 @@
                                 <div class="input-append">
                                     <input type="text" id="autocomplete" type="text" class="input-error input-xxlarge"
                                            ng-model="searchMap.item_keywords"/>
-                                    <button class="sui-btn btn-xlarge btn-danger" type="button" ng-click="search()">搜索
+                                    <button class="sui-btn btn-xlarge btn-danger" type="button"
+                                            ng-click="search();categoryList = [];categoryShow = []">搜索
                                     </button>
                                 </div>
                             </form>
@@ -109,7 +115,8 @@
                         <div class="fr shopcar">
                             <div class="show-shopcar" id="shopcar">
                                 <span class="car"></span>
-                                <a class="sui-btn btn-default btn-xlarge" href="cart.html" target="_blank">
+                                <a class="sui-btn btn-default btn-xlarge"
+                                   href="../../../../pyg_portal_web/src/main/webapp/cart.html" target="_blank">
                                     <span>我的购物车</span>
                                     <i class="shopnum">0</i>
                                 </a>
@@ -136,7 +143,7 @@
                             <li class="f-item">团购</li>
                             <li class="f-item">有趣</li>
                             <li class="f-item">
-                                <a href="seckill-index.html" target="_blank">秒杀</a>
+                                <a href="../../../../pyg_portal_web/src/main/webapp/seckill-index.html" target="_blank">秒杀</a>
                             </li>
                         </ul>
                     </div>
@@ -155,13 +162,12 @@
         <div class="bread">
             <ul class="fl sui-breadcrumb">
                 <li>
-                    <a href="#">全部结果</a>
+                    <a href="#">全部结果({{resultMap.total}})</a>
                 </li>
-                <li class="active">智能手机</li>
             </ul>
-            <ul class="tags-choose">
-                <li class="tag">全网通<i class="sui-icon icon-tb-close"></i></li>
-                <li class="tag">63G<i class="sui-icon icon-tb-close"></i></li>
+            <ul class="tags-choose" ng-repeat="pojo in categoryShow">
+                <li class="tag">{{pojo.value}}<i class="sui-icon icon-tb-close"
+                                                 ng-click="deleCategoryList(pojo.key)"></i></li>
             </ul>
             <form class="fl sui-form form-dark">
                 <div class="input-control control-right">
@@ -173,22 +179,23 @@
         </div>
         <!--selector-->
         <div class="clearfix selector">
-            <div class="type-wrap">
+            <div class="type-wrap" ng-if="categoryList['category'] == null">
                 <div class="fl key">类别</div>
                 <div class="fl value">
                     <ul class="type-list">
                         <li ng-repeat="pojo in resultMap.categoryList">
-                            <a>{{pojo}}</a>
+                            <button ng-click="addCategoryList('category', pojo)">{{pojo}}</button>
                         </li>
                     </ul>
                 </div>
                 <div class="fl ext"></div>
             </div>
-            <div class="type-wrap logo">
+            <div class="type-wrap logo" ng-if="categoryList['brand'] == null">
                 <div class="fl key brand">品牌</div>
                 <div class="value logos">
                     <ul class="logo-list">
-                        <li ng-repeat="pojo in resultMap.brand"><a>{{pojo.text}}</a></li>
+                        <li ng-repeat="pojo in resultMap.brand" ng-click="addCategoryList('brand', pojo.text)"><a>{{pojo.text}}</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="ext">
@@ -197,16 +204,19 @@
                 </div>
             </div>
             <div class="type-wrap" ng-repeat="pojo in resultMap.spec">
+                <span ng-if="categoryList[pojo.text] == null">
                 <div class="fl key">{{pojo.text}}</div>
                 <div class="fl value">
                     <ul class="type-list">
-                        <li ng-repeat="option in pojo.options">
+                        <li ng-repeat="option in pojo.options"
+                            ng-click="addCategorySpecList(pojo.text, option.optionName)">
                             <a>{{option.optionName}}</a>
                         </li>
 
                     </ul>
                 </div>
                 <div class="fl ext"></div>
+                    </span>
             </div>
         </div>
         <!--details-->
@@ -237,7 +247,8 @@
                     <li class="yui3-u-1-5" ng-repeat="pojo in resultMap.itemList">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <a href="item.html" target="_blank"><img src="{{pojo.image}}"/></a>
+                                <a href="javascript:void(0)" ng-click="toItemHtml(pojo.id)" target="_blank"><img
+                                        src="{{pojo.image}}"/></a>
                             </div>
                             <div class="price">
                                 <strong>
@@ -255,7 +266,8 @@
                                 <i class="command">已有2000人评价</i>
                             </div>
                             <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                <a href="../../../../pyg_portal_web/src/main/webapp/success-cart.html" target="_blank"
+                                   class="sui-btn btn-bordered btn-danger">加入购物车</a>
                                 <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
                                 <a href="javascript:void(0);" class="sui-btn btn-bordered">关注</a>
                             </div>
@@ -266,30 +278,24 @@
             <div class="fr page">
                 <div class="sui-pagination pagination-large">
                     <ul>
-                        <li class="prev disabled">
+                        <li class="prev {{searchMap.page==1?'disabled':''}}"
+                            ng-click="addSearchToMap('page',searchMap.page-1)">
                             <a href="#">«上一页</a>
                         </li>
-                        <li class="active">
-                            <a href="#">1</a>
+                        <li ng-if="firstDot" class="dotted" ng-if="firstDot"><span>...</span></li>
+
+                        <li class="{{searchMap.page == pageNo ? 'active':''}}" ng-repeat="pageNo in totalPages"
+                            ng-click="addSearchToMap('page',pageNo)">
+                            <a href="#">{{pageNo}}</a>
                         </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li class="dotted"><span>...</span></li>
-                        <li class="next">
+
+                        <li ng-if="lastDot" class="dotted" ng-if="lastDot"><span>...</span></li>
+                        <li class="next {{searchMap.page == resultMap.totalPages?'disabled':''}}"
+                            ng-click="addSearchToMap('page',searchMap.page+1)">
                             <a href="#">下一页»</a>
                         </li>
                     </ul>
-                    <div><span>共10页&nbsp;</span><span>
+                    <div><span>共{{resultMap.totalPages}}页&nbsp;</span><span>
       到第
       <input type="text" class="page-num">
       页 <button class="page-confirm" onclick="alert(1)">确定</button></span></div>
@@ -304,7 +310,7 @@
                     <li class="yui3-u-1-4">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="img/like_01.png"/>
+                                <img src="../../../../pyg_portal_web/src/main/webapp/img/like_01.png"/>
                             </div>
                             <div class="attr">
                                 <em>Apple苹果iPhone 6s (A1699)</em>
@@ -323,7 +329,7 @@
                     <li class="yui3-u-1-4">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="img/like_03.png"/>
+                                <img src="../../../../pyg_portal_web/src/main/webapp/img/like_03.png"/>
                             </div>
                             <div class="attr">
                                 <em>金属A面，360°翻转，APP下单省300！</em>
@@ -342,7 +348,7 @@
                     <li class="yui3-u-1-4">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="img/like_04.png"/>
+                                <img src="../../../../pyg_portal_web/src/main/webapp/img/like_04.png"/>
                             </div>
                             <div class="attr">
                                 <em>256SSD商务大咖，完爆职场，APP下单立减200</em>
@@ -361,7 +367,7 @@
                     <li class="yui3-u-1-4">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="img/like_02.png"/>
+                                <img src="../../../../pyg_portal_web/src/main/webapp/img/like_02.png"/>
                             </div>
                             <div class="attr">
                                 <em>Apple苹果iPhone 6s (A1699)</em>
@@ -491,7 +497,7 @@
                     </div>
                     <div class="yui3-u-1-6">
                         <h4>帮助中心</h4>
-                        <img src="img/wx_cz.jpg">
+                        <img src="../../../../pyg_portal_web/src/main/webapp/img/wx_cz.jpg">
                     </div>
                 </div>
             </div>
@@ -657,7 +663,8 @@
     </div>
 </script>
 <!--侧栏面板结束-->
-<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+        src="../../../../pyg_portal_web/src/main/webapp/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
         $("#service").hover(function () {
@@ -673,11 +680,12 @@
 
     })
 </script>
-<script type="text/javascript" src="js/model/cartModel.js"></script>
-<script type="text/javascript" src="js/czFunction.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
-<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="js/widget/cartPanelView.js"></script>
+<script type="text/javascript" src="../../../../pyg_portal_web/src/main/webapp/js/model/cartModel.js"></script>
+<script type="text/javascript" src="../../../../pyg_portal_web/src/main/webapp/js/czFunction.js"></script>
+<script type="text/javascript"
+        src="../../../../pyg_portal_web/src/main/webapp/js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../../../../pyg_portal_web/src/main/webapp/js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="../../../../pyg_portal_web/src/main/webapp/js/widget/cartPanelView.js"></script>
 </body>
 
 </html>

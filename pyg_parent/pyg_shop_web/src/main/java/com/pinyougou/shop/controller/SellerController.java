@@ -34,8 +34,9 @@ public class SellerController {
 		seller.setPassword(password);
 
 		try {
-			sellerService.add(seller);
-			return new ResultBean<>(true, "增加成功");
+			boolean isInsert = sellerService.add(seller);
+
+			return new ResultBean<>(isInsert);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResultBean<>(false, "增加失败");

@@ -13,7 +13,7 @@ public interface SellerService {
 	/**
 	 * 增加
 	*/
-	public void add(TbSeller seller);
+	public boolean add(TbSeller seller);
 	
 	
 	/**

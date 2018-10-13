@@ -26,9 +26,7 @@ public class UploadController {
 
         try {
             FastDFSClient fastDFSClient = new FastDFSClient("classpath:shop/config/fdfs_client.conf");
-
             String path = fastDFSClient.uploadFile(file.getBytes(), extName);
-
             String url = FILE_SERVER_URL + "/" +  path;
 
             return new ResultBean(true, url);
