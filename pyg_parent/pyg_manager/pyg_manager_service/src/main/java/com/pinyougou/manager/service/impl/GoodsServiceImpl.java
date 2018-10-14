@@ -1,12 +1,14 @@
 package com.pinyougou.manager.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.github.pagehelper.PageHelper;
+import com.pinyougou.constant.ActiveMqDestination;
 import com.pinyougou.manager.service.GoodsService;
 import com.pinyougou.mapper.*;
 import com.pinyougou.pojo.*;
@@ -15,8 +17,13 @@ import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import javax.jms.*;
 
 /**
  * 服务实现层
@@ -44,6 +51,18 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private TbSellerMapper sellerMapper;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @Autowired
+    @Qualifier("toSolrQueue")
+    private Destination toSolrQueue;
+
+
+    @Autowired
+    @Qualifier("toFreemarkerQueue")
+    private Destination toFreemarkerQueue;
 
     @Override
     public void saveGoods(GoodsEditBean goodsEditBean) {
@@ -123,15 +142,38 @@ public class GoodsServiceImpl implements GoodsService {
         goodsMapper.updateByExampleSelective(tbGoods, example);
     }
 
+
+    /**
+     * 商品上下架方法
+     * @param isMarketable
+     * @param selectedIds
+     */
     @Override
-    public void updateIsMarketable(String isMarketable, List<Long> selectedIds) {
+    public void updateIsMarketable(final String isMarketable,final List<Long> selectedIds) {
         TbGoods tbGoods = new TbGoods();
         tbGoods.setIsMarketable(isMarketable);
-
-
         TbGoodsExample example = new TbGoodsExample();
         example.createCriteria().andIdIn(selectedIds);
         goodsMapper.updateByExampleSelective(tbGoods, example);
+
+        try {
+            sendMessage(toSolrQueue,isMarketable, selectedIds);
+            sendMessage(toFreemarkerQueue,isMarketable, selectedIds);
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendMessage(Destination destination, String isMarketable, List<Long> selectedIds) throws JMSException {
+        jmsTemplate.send(destination, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                MapMessage mapMessage = session.createMapMessage();
+                mapMessage.setObject(ActiveMqDestination.GOODS_ID_MAP_MESSAGE_KEY, selectedIds);
+                mapMessage.setString(ActiveMqDestination.GOODS_MARKETABLE_MAP_MESSAGE_KEY, isMarketable);
+                return mapMessage;
+            }
+        });
     }
 
     private void setItemVales(TbGoods goods, TbGoodsDesc goodsDesc, TbItem item) {
