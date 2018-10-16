@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/cas_demo" />
     <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_content/pyg_content_service" />
     <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_manager/pyg_manager_service" />
     <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_manager_web" />
@@ -11,6 +12,10 @@
     <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_search/pyg_search_service" />
     <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_search_web" />
     <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_shop_web" />
+    <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_sms/pyg_sms_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_sms_web" />
+    <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_user/pyg_user_service" />
+    <file type="web" url="file://$PROJECT_DIR$/pyg_parent/pyg_user_web" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -19,7 +24,15 @@
         <option value="$PROJECT_DIR$/acticeMQ_demo/pom.xml" />
         <option value="$PROJECT_DIR$/springjms_activeMQ/pom.xml" />
         <option value="$PROJECT_DIR$/springboot_activemq/pom.xml" />
+        <option value="$PROJECT_DIR$/http_demo/pom.xml" />
+        <option value="$USER_HOME$/Desktop/java/api_demo/alicom-dysms-api/pom.xml" />
+        <option value="$PROJECT_DIR$/cas_demo/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/pyg_parent/pyg_sms/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_10" project-jdk-name="10" project-jdk-type="JavaSDK">

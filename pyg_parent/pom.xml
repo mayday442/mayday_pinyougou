@@ -22,6 +22,9 @@
         <module>pyg_search_web</module>
         <module>pyg_page</module>
         <module>pyg_page_web</module>
+        <module>pyg_sms_web</module>
+        <module>pyg_user</module>
+        <module>pyg_user_web</module>
     </modules>
     <packaging>pom</packaging>
 

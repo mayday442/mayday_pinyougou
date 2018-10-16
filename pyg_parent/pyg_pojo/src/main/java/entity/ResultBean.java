@@ -33,6 +33,11 @@ public class ResultBean<T> implements Serializable {
         this.success = success;
     }
 
+    public ResultBean(boolean success, T data) {
+        this.data = data;
+        this.success = success;
+    }
+
     public ResultBean(boolean success, String message) {
         super();
         this.success = success;
